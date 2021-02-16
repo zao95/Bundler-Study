@@ -1,3 +1,3 @@
-const aaa = () => {
+export const aaa = () => {
     return abc
 }
