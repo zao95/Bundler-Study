@@ -3,7 +3,6 @@ const path = require('path')
 const glob = require('glob')
 const sass = require('sass')
 const babel = require("@babel/core")
-const babelConfig = require("./babel.config.json")
 
 const sourceDir = "src"
 const distDir = "dist"
@@ -32,6 +31,29 @@ const styleRender = async (file) => {
     console.log(`${file} has been copied to ${savePath}`)
 }
 
+const babelConfig = {
+    "presets": [
+        [
+            "@babel/env",
+            {
+                "targets": {
+                    "edge": "17",
+                    "firefox": "60",
+                    "chrome": "67",
+                    "safari": "11.1"
+                }
+            }
+        ]
+    ],
+    "plugins": [
+        [
+            "@babel/plugin-transform-arrow-functions"
+        ],
+        [
+            "@babel/plugin-transform-react-jsx"
+        ]
+    ]
+}
 const scriptRender = async (file) => {
     const savePath = file.replace(sourceDir, distDir)
     const pathDir = path.dirname(file).replace(sourceDir, distDir)
@@ -46,13 +68,14 @@ const scriptRender = async (file) => {
 }
 
 const renderer = () => {
+    console.log("Start render")
     const htmls = glob.sync(`./${sourceDir}/**/*.html`)
     for (let html of htmls) htmlRender(html)
 
-    const styles = glob.sync(`./${sourceDir}/**/*.{sass, scss}`)
+    const styles = glob.sync(`./${sourceDir}/**/*.{sass,scss}`)
     for (let style of styles) styleRender(style)
 
-    const scripts = glob.sync(`./${sourceDir}/**/*.{js, jsx}`)
+    const scripts = glob.sync(`./${sourceDir}/**/*.{js,jsx}`)
     for (let script of scripts) scriptRender(script)
 }
 
