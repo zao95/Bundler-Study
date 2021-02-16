@@ -1,4 +1,4 @@
-## Study
+## Builder-Study
 Webpack의 유사 기능을 javascript로 작성
 ## Feature
 - src 폴더에서 dist 폴더로 폴더구조를 유지한 채로 복사 붙여넣기
