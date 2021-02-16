@@ -4,6 +4,7 @@
     "description": "",
     "main": "index.js",
     "scripts": {
+        "build": "node renderer.js",
         "test": "echo \"Error: no test specified\" && exit 1"
     },
     "author": "",
@@ -11,5 +12,9 @@
     "dependencies": {
         "react": "^17.0.1",
         "react-dom": "^17.0.1"
+    },
+    "devDependencies": {
+        "glob": "^7.1.6",
+        "sass": "^1.32.7"
     }
 }
