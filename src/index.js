@@ -1,3 +1,1 @@
-const aaa = require("./test")
-
-console.log(aaa())
+console.log("Apple")
